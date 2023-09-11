@@ -33,7 +33,11 @@ armv7_job:
         run: |
           git clone https://github.com/ptitSeb/box64
           cd box64
+          curl -d "Start cmkae 😀" ntfy.sh/easonntfy
           mkdir build; cd build; cmake .. -D ARM_DYNAREC=ON -D CMAKE_BUILD_TYPE=RelWithDebInfo
+          curl -d "Start mkae 😀" ntfy.sh/easonntfy
           make -j4  
+          curl -d "finsh mkae 😀" ntfy.sh/easonntfy
           sudo make install
+          curl -d "finsh mkae install 😀" ntfy.sh/easonntfy
           sudo systemctl restart systemd-binfmt
