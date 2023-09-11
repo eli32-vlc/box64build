@@ -25,11 +25,15 @@ armv7_job:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: update apt
+        run: sudo apt update
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          git clone https://github.com/ptitSeb/box64
+          cd box64
+          mkdir build; cd build; cmake .. -D ARM_DYNAREC=ON -D CMAKE_BUILD_TYPE=RelWithDebInfo
+          make -j4  
+          sudo make install
+          sudo systemctl restart systemd-binfmt
